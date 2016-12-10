@@ -24,6 +24,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :distance_in, class: "control-label" %>
+    <%= select f, :distance_unit, DistanceUnitEnum.__enum_map__() |> Enum.map(fn({x,_})-> x end), class: "form-control" %>
+    <%= error_tag f, :distance_unit %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

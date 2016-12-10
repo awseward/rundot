@@ -14,7 +14,7 @@
 
   <li>
     <strong>Distance:</strong>
-    <%= @run.distance %>
+    <%= "#{@run.distance} #{@run.distance_unit}" %>
   </li>
 
 </ul>
