@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <%= label f, :distance, class: "control-label" %>
-    <%= number_input f, :distance, step: "any", class: "form-control" %>
+    <%= number_input f, :distance, step: "any", class: "form-control", id: "run-distance-raw-value" %>
     <%= error_tag f, :distance %>
   </div>
 
@@ -27,6 +27,13 @@
     <%= label f, :distance_in, class: "control-label" %>
     <%= select f, :distance_unit, DistanceUnitEnum.__enum_map__() |> Enum.map(fn({x,_})-> x end), class: "form-control" %>
     <%= error_tag f, :distance_unit %>
+  </div>
+
+  <div class="jumbotron">
+    <p>You ran for about <strong><span id="run-elapsed-time"></span></strong></h2>
+    <p>Your average speed was <strong><span id="run-average-speed"></span> <span class="run-distance-unit"></span>/hr</strong></p>
+    &nbsp;
+    <h2>Nice work!</h2>
   </div>
 
   <div class="form-group">
