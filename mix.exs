@@ -19,7 +19,7 @@ defmodule Rundot.Mixfile do
   def application do
     [mod: {Rundot, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :timex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -30,15 +30,18 @@ defmodule Rundot.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:ecto_enum, "~> 1.0"},
-     {:phoenix, "~> 1.2.1"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+    [
+      {:cowboy, "~> 1.0"},
+      {:ecto_enum, "~> 1.0"},
+      {:gettext, "~> 0.11"},
+      {:phoenix, "~> 1.2.1"},
+      {:phoenix_ecto, "~> 3.0"},
+      {:phoenix_html, "~> 2.6"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:timex, "~> 3.0"},
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

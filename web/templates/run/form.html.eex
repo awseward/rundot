@@ -36,7 +36,7 @@
   </div>
 
   <div class="jumbotron">
-    <p>You ran for about <strong><span id="run-elapsed-time"></span></strong></h2>
+    <p>You ran for <strong><span id="run-elapsed-time"></span></strong></h2>
     <p>Your average speed was <strong><span id="run-average-speed"></span> <span class="run-distance-unit"></span>/hr</strong></p>
     &nbsp;
     <h2>Nice work!</h2>
