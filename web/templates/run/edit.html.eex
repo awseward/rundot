@@ -1,5 +1,3 @@
-<h2>Edit run</h2>
-
 <%= render "form.html", changeset: @changeset,
                         action: run_path(@conn, :update, @run) %>
 
