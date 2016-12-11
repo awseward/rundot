@@ -19,3 +19,81 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+import moment from "moment";
+
+import $ from "jquery";
+window.$ = $;
+
+function readDistance() {
+  return $("#run-distance-raw-value").val();
+}
+
+function _readDatePart(formGroup, fieldName, datePart) {
+  return formGroup.find(`select[name='run[${fieldName}][${datePart}]']`).val();
+}
+
+function _readDate(formGroup, fieldName) {
+  const __read = datePart => _readDatePart(formGroup, fieldName, datePart);
+  return new Date(
+    __read('year'),
+    __read('month'),
+    __read('day'),
+    __read('hour'),
+    __read('minute')
+  );
+}
+
+const readStartDate = () => _readDate(
+	$(".form-group").first(),
+	"start_time"
+);
+
+const readEndDate = () => _readDate(
+  $(".form-group").eq(1),
+  "end_time"
+);
+
+function setRoughElapsedTime() {
+  const startDate = readStartDate();
+  const endDate = readEndDate();
+  const duration = moment.duration(endDate - startDate);
+
+  $("#run-elapsed-time").text(duration.humanize());
+}
+
+function setAverageSpeed() {
+  const hours = moment.duration(readEndDate() - readStartDate()).asHours();
+  const distance = Number(readDistance());
+  const speed = distance / hours;
+  console.log(speed);
+
+  $("#run-average-speed").text(speed.toFixed(2));
+}
+
+function setDistanceUnit() {
+  const unit = $("#run_distance_unit").val();
+  $(".run-distance-unit").first().text(unit);
+}
+
+function updateSummary() {
+  setRoughElapsedTime();
+  setAverageSpeed();
+  setDistanceUnit();
+}
+
+function registerChangeHandlers() {
+  // This is a little heavy-handed, but this code probably won't really last
+  // that long anyway...
+  $("select").each(function () {
+    $(this).change(updateSummary);
+  });
+  $("input").each(function() {
+    $(this).keyup(updateSummary);
+  });
+}
+
+$(document).ready(function() {
+  updateSummary();
+  registerChangeHandlers();
+});
