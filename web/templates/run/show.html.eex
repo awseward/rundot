@@ -1,23 +1,18 @@
-<h2>Show run</h2>
-
 <ul>
-
   <li>
     <strong>Start time:</strong>
     <%= @run.start_time %>
   </li>
-
   <li>
     <strong>End time:</strong>
     <%= @run.end_time %>
   </li>
-
   <li>
     <strong>Distance:</strong>
     <%= "#{@run.distance} #{@run.distance_unit}" %>
   </li>
-
 </ul>
 
 <%= link "Edit", to: run_path(@conn, :edit, @run) %>
+&nbsp;
 <%= link "Back", to: run_path(@conn, :index) %>
