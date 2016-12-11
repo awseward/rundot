@@ -59,14 +59,19 @@ function setRoughElapsedTime() {
   const endDate = readEndDate();
   const duration = moment.duration(endDate - startDate);
 
-  $("#run-elapsed-time").text(duration.humanize());
+  const durStr = duration.asSeconds() === 0
+    ? "0 seconds"
+    : `roughly ${duration.humanize()}`;
+
+  $("#run-elapsed-time").text(durStr);
 }
 
 function setAverageSpeed() {
   const hours = moment.duration(readEndDate() - readStartDate()).asHours();
   const distance = Number(readDistance());
-  const speed = distance / hours;
-  console.log(speed);
+  const speed = hours === 0
+    ? 0
+    : distance / hours;
 
   $("#run-average-speed").text(speed.toFixed(2));
 }
