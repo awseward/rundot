@@ -40,7 +40,8 @@ function _readDate(formGroup, fieldName) {
     __read('month'),
     __read('day'),
     __read('hour'),
-    __read('minute')
+    __read('minute'),
+    __read('second')
   );
 }
 
