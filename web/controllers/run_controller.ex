@@ -1,5 +1,7 @@
+require IEx
 defmodule Rundot.RunController do
   use Rundot.Web, :controller
+  use Timex
 
   alias Rundot.Run
 
@@ -9,8 +11,14 @@ defmodule Rundot.RunController do
   end
 
   def new(conn, _params) do
-    changeset = Run.changeset(%Run{})
+    today = get_ecto_today
+    changeset = %Run{start_time: today, end_time: today} |> Run.changeset
     render(conn, "new.html", changeset: changeset)
+  end
+
+  def get_ecto_today() do
+    t = Timex.local |> Timex.to_date |> Timex.to_datetime(:local)
+    %Ecto.DateTime{year: t.year, month: t.month, day: t.day}
   end
 
   def create(conn, %{"run" => run_params}) do
