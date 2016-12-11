@@ -14,11 +14,6 @@ defmodule Rundot.RunController do
     render(conn, "new.html", changeset: Run.changeset(%Run{}))
   end
 
-  def get_ecto_today() do
-    t = Timex.local |> Timex.to_date |> Timex.to_datetime(:local)
-    %Ecto.DateTime{year: t.year, month: t.month, day: t.day}
-  end
-
   def create(conn, %{"run" => run_params}) do
     case Repo.insert(Run.changeset(%Run{}, run_params)) do
       {:ok, _run} ->

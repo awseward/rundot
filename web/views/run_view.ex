@@ -10,5 +10,4 @@ defmodule Rundot.RunView do
     t = Timex.local |> Timex.to_date |> Timex.to_datetime(:local)
     %Ecto.DateTime{year: t.year, month: t.month, day: t.day}
   end
-
 end
