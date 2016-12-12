@@ -31,6 +31,7 @@ defmodule Rundot.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:comeonin, "~>1.0"},
       {:cowboy, "~> 1.0"},
       {:ecto_enum, "~> 1.0"},
       {:gettext, "~> 0.11"},

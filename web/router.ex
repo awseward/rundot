@@ -17,7 +17,9 @@ defmodule Rundot.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", RunController, :index
+
     resources "/runs", RunController
+    resources "/registrations", RegistrationController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.
